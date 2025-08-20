@@ -69,13 +69,11 @@ class Empresa:
         #La lista de departamentos es protegida, ya que no debe ser manipulable fuera de la clase o de
         #sus sub-clases, se puede manipular pero de una forma controlada.
 
-    def mostrar_información(self):
-        print(f"Numero Registro:{self.__numero_registro}\nNombre:{self.__nombre}")
+    def mostrar_informacion(self):
+        return f"Codigo:{self.__numero_registro}\nNombre:{self.__nombre}"
 
-    def agregar_departamento(self):
-        nombre= input("Ingrese nombre de departamento:")
-        numero_registro= input("Ingrese numero de registro:")
-        depa= Empresa(nombre,numero_registro)
+    def agregar_departamento(self,nombre,codigo):
+        depa= Empresa(nombre,codigo)
         self._departamentos.append(depa)
 
     def listar_departamentos(self):
@@ -109,3 +107,10 @@ departamento.ingresar_empleados("001","Juan Perez","Gerente","5500")
 departamento.ingresar_empleados("002","Sara Matinez","Secretaria","3000")
 departamento.ingresar_empleados("003","John Lennon","Director Creativo","6000")
 departamento.lista_empleados()
+
+#prueba clase Empresa
+empresa = Empresa("LuthorCorp","20084")
+empresa.agregar_departamento("Departamento de derechos Humanos","01")
+empresa.agregar_departamento("Departamento Marketing","02")
+empresa.agregar_departamento("Departamento de Finanzas","03")
+empresa.listar_departamentos()
