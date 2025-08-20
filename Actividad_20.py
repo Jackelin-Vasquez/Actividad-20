@@ -72,11 +72,21 @@ class Empresa:
         #La lista de departamentos es protegida, ya que no debe ser manipulable fuera de la clase o de
         #sus sub-clases, se puede manipular pero de una forma controlada.
 
+    def mostrar_información(self):
+        print(f"Numero Registro:{self.__numero_registro}\nNombre:{self.__nombre}")
+
     def agregar_departamento(self):
         nombre= input("Ingrese nombre de departamento:")
         numero_registro= input("Ingrese numero de registro:")
         depa= Empresa(nombre,numero_registro)
         self._departamentos.append(depa)
+
+    def listar_departamentos(self):
+        if not self._departamentos:
+            print("La lista esta vacia...")
+        else:
+            for indice,i in enumerate(self._departamentos):
+                print(f"{indice}.{i.mostrar_informacion()}")
 
 def menu():
     print("---MENÚ---")
