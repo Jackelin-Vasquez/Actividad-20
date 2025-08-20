@@ -13,15 +13,16 @@ class Empleado:
         #por ello son datos protegidos, pueden modificarse dentro de la clase por medio de metodos.
 
     def mostrar_informacion(self):
-        print("---DATOS DEL EMPLEADO---")
-        return f"Nombre:{self.nombre}\nCodigo:{self.__codigo}\nPuesto:{self._puesto}\nSalario:{self._salario}"
+        print( f"Nombre:{self.nombre}\nCodigo:{self.__codigo}\nPuesto:{self._puesto}\nSalario:{self._salario}")
+        print(f"{"---"*4}")
 
     def modificar_puesto(self,nuevo_puesto):
         self._puesto = nuevo_puesto
 
     def consultar_salario(self,nombre):
         if self.nombre == nombre:
-            print(f"Nombre:{self.nombre} tiene un salario de {self._salario} ")
+            print(f"{nombre} tiene un salario de {self._salario} ")
+            print(f"{"---"*4}")
         else:
             print(f"{nombre} no ha sido encontrado")
 
@@ -44,11 +45,11 @@ class Departamento:
         #se puede realizar por medio de metodos de la clase.
 
     def ingresar_empleados(self,codigo,nuevo_empleado,puesto,salario):
-        print("---Ingreso de Empleados---")
-        Empleados= Empleado(codigo,nuevo_empleado,puesto,salario)
-        self._empleados.append(Empleados)
+        empleados= Empleado(codigo,nuevo_empleado,puesto,salario)
+        self._empleados.append(empleados)
 
     def lista_empleados(self):
+        print("---Lista de Empleados---")
         if not self._empleados:
             print("Lista vacia...")
         else:
@@ -73,26 +74,34 @@ class Empresa:
          return f"Codigo:{self.__numero_registro}\nNombre:{self.__nombre}"
 
     def agregar_departamento(self,nombre,codigo):
-        depa= [nombre,codigo]
+        depa= Departamento(codigo,nombre)
         self._departamentos.append(depa)
 
     def listar_departamentos(self):
         if not self._departamentos:
             print("La lista esta vacia...")
         else:
-            for indice,i in enumerate(self._departamentos):
-                print(f"{indice}.Nombre:{i[0]}\nCodigo:{i[1]}")
+            for indice,i in enumerate(self._departamentos, start=1):
+                print(f"{indice}.Nombre:{i.nombre}")
 
     def buscar(self,buscar_departamento):
-        print("---Buscar departamento---")
         encontrado = False
         for dep in self._departamentos:
-            if dep[0].lower() ==  buscar_departamento.lower():
-                print(f"Nombre:{dep[0]}\nCodigo:{dep[1]}")
+            if dep.nombre.lower() ==  buscar_departamento.lower():
+                print(f"Nombre:{dep.nombre} se encuentra en lista")
                 encontrado= True
                 break
         if not encontrado:
             print("Departamento no encontrado...")
+
+    def modificar_nombre_departamento(self,nombre,nuevo_nombre):
+        encontrado = False
+        for i in self._departamentos:
+            if i.nombre.lower()== nombre.lower():
+                i.nombre = nuevo_nombre
+                encontrado = True
+        if not encontrado:
+            print("Deoartamento no encontrado...")
 
 #prueba Clas empleado
 empleado= Empleado("01","Pedro Pascal","Jefe de departamento",5000)
@@ -119,5 +128,9 @@ empresa.agregar_departamento("Departamento de derechos Humanos","01")
 empresa.agregar_departamento("Departamento Marketing","02")
 empresa.agregar_departamento("Departamento de Finanzas","03")
 empresa.listar_departamentos()
+print(f"{"---"*4}")
 empresa.buscar("Departamento de Ventas")
 empresa.buscar("Departamento Marketing")
+print(f"{"---"*4}")
+empresa.modificar_nombre_departamento("Departamento Marketing","Departamento Marketing y Publicidad")
+empresa.listar_departamentos()
