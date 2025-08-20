@@ -27,8 +27,15 @@ class Departamento:
 class Empresa:
     def __init__(self,nombre,numero_registro):
         self.__nombre= nombre
+        #El nombre de la empresa es privado porque el nombre de la empresa en ningun momento debe ser
+        #modificado o debe manipularse.
         self.__numero_registro= numero_registro
+        #El numero de registro es privado debido a que es el numero que hace unica a la empresa
+        #y demuestra que esta registrada de forma legal y si se da la oportunidad de manipularse puede
+        #ocasionar problemas en sus datos o incluso en aspectos legales.
         self._departamentos= []
+        #La lista de departamentos es protegida, ya que no debe ser manipulable fuera de la clase o de
+        #sus sub-clases, se puede manipular pero de una forma controlada.
 
 
 def menu():
