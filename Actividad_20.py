@@ -17,12 +17,13 @@ class Empleado:
         print(f"Nombre:{self.nombre}\nCodigo:{self.__codigo}\nPuesto:{self._puesto}\nSalario:{self._salario}")
 
     def modificar_puesto(self,nuevo_puesto):
-        self._puesto == nuevo_puesto
+        self._puesto = nuevo_puesto
 
-    def consultar_salario(self):
-        nombre = input("Ingrese nombre de empleado a consultar salario:")
+    def consultar_salario(self,nombre):
         if self.nombre == nombre:
             print(f"Nombre:{self.nombre} tiene un salario de {self._salario} ")
+        else:
+            print(f"{nombre} no ha sido encontrado")
 
     def modificar_salario(self,nuevo_salario):
         if nuevo_salario <= 0:
@@ -97,8 +98,11 @@ class Empresa:
         if encontrado:
             print(f"Nombre:{self.__nombre}\nNumero Registro:{self.__numero_registro}")
 
-
-def menu():
-    print("---MENÚ---")
-    print(f"1.Agregar empleados a un departamento.\n2.Mostrar información de un empleado.\n3.Lista de empleados por departamento")
-    print(f"4.Salir")
+#prueba Clas empleado
+empleado= Empleado("01","Pedro Pascal","Jefe de departamento",5000)
+empleado.mostrar_informacion()
+empleado.modificar_puesto("Asesor")
+empleado.mostrar_informacion()
+empleado.modificar_salario(5500)
+empleado.mostrar_informacion()
+empleado.consultar_salario("Pedro Pascal")
