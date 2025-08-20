@@ -12,7 +12,7 @@ class Empleado:
         #el salario y puesto pueden cambiar, ya que el empleado puede tener un aumento o un acenso,
         #por ello son datos protegidos, pueden modificarse dentro de la clase por medio de metodos.
 
-    def mostrar_información(self):
+    def mostrar_informacion(self):
         print("---DATOS DEL EMPLEADO---")
         print(f"Nombre:{self.nombre}\nCodigo:{self.__codigo}\nPuesto:{self._puesto}\nSalario:{self._salario}")
 
@@ -50,6 +50,14 @@ class Departamento:
         salario= input("Ingrese salario de empleado:")
         Empleados= Empleado(codigo,nuevo_empleado,puesto,salario)
         self._empleados.append(Empleados)
+
+    def lista_empleados(self):
+        if not self._empleados:
+            print("Lista vacia...")
+        else:
+            for indice,i in enumerate(self._empleados):
+                print(f"{indice}. {i.mostrar_informacion()}")
+
 
 class Empresa:
     def __init__(self,nombre,numero_registro):
