@@ -30,7 +30,6 @@ class Empleado:
         else:
             self._salario = nuevo_salario
 
-
 class Departamento:
     def __init__(self,codigo_interno,nombre):
         self.__codigo_interno=codigo_interno
@@ -42,6 +41,15 @@ class Departamento:
         self._empleados = []
         #la lista de empleados debe ser protegida porque su manipulación debe ser controlada, y esto
         #se puede realizar por medio de metodos de la clase.
+
+    def ingresar_empleados(self):
+        print("---Ingreso de Empleados---")
+        codigo= input("Ingrese codigo de empleado:")
+        nuevo_empleado = input("Ingrese nombre de Empleado:")
+        puesto= input("Ingrese puesto de empleado:")
+        salario= input("Ingrese salario de empleado:")
+        Empleados= Empleado(codigo,nuevo_empleado,puesto,salario)
+        self._empleados.append(Empleados)
 
 class Empresa:
     def __init__(self,nombre,numero_registro):
