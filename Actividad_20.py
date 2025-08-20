@@ -38,6 +38,7 @@ class Empresa:
         #sus sub-clases, se puede manipular pero de una forma controlada.
 
 
+
 def menu():
     print("---MENÚ---")
     print(f"1.Agregar empleados a un departamento.\n2.Mostrar información de un empleado.\n3.Lista de empleados por departamento")
