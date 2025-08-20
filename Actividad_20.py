@@ -70,10 +70,10 @@ class Empresa:
         #sus sub-clases, se puede manipular pero de una forma controlada.
 
     def mostrar_informacion(self):
-        return f"Codigo:{self.__numero_registro}\nNombre:{self.__nombre}"
+         return f"Codigo:{self.__numero_registro}\nNombre:{self.__nombre}"
 
     def agregar_departamento(self,nombre,codigo):
-        depa= Empresa(nombre,codigo)
+        depa= [nombre,codigo]
         self._departamentos.append(depa)
 
     def listar_departamentos(self):
@@ -81,16 +81,18 @@ class Empresa:
             print("La lista esta vacia...")
         else:
             for indice,i in enumerate(self._departamentos):
-                print(f"{indice}.{i.mostrar_informacion()}")
+                print(f"{indice}.Nombre:{i[0]}\nCodigo:{i[1]}")
 
-    def buscar(self):
-        buscar_departamento= input("Ingrese departamento a buscar:")
+    def buscar(self,buscar_departamento):
+        print("---Buscar departamento---")
         encontrado = False
         for dep in self._departamentos:
-            if dep.nombre ==  buscar_departamento:
+            if dep[0].lower() ==  buscar_departamento.lower():
+                print(f"Nombre:{dep[0]}\nCodigo:{dep[1]}")
                 encontrado= True
-        if encontrado:
-            print(f"Nombre:{self.__nombre}\nNumero Registro:{self.__numero_registro}")
+                break
+        if not encontrado:
+            print("Departamento no encontrado...")
 
 #prueba Clas empleado
 empleado= Empleado("01","Pedro Pascal","Jefe de departamento",5000)
@@ -102,6 +104,7 @@ empleado.mostrar_informacion()
 empleado.consultar_salario("Pedro Pascal")
 
 #Prueba clase Departamento
+print("---DEPARTAMENTO---")
 departamento= Departamento("001","Departamento de Derechos Humanos")
 departamento.ingresar_empleados("001","Juan Perez","Gerente","5500")
 departamento.ingresar_empleados("002","Sara Matinez","Secretaria","3000")
@@ -109,8 +112,12 @@ departamento.ingresar_empleados("003","John Lennon","Director Creativo","6000")
 departamento.lista_empleados()
 
 #prueba clase Empresa
+print("---EMPRESA---")
 empresa = Empresa("LuthorCorp","20084")
+print(f"{empresa.mostrar_informacion()}\n{"---"*4}")
 empresa.agregar_departamento("Departamento de derechos Humanos","01")
 empresa.agregar_departamento("Departamento Marketing","02")
 empresa.agregar_departamento("Departamento de Finanzas","03")
 empresa.listar_departamentos()
+empresa.buscar("Departamento de Ventas")
+empresa.buscar("Departamento Marketing")
