@@ -19,3 +19,5 @@ class Empresa:
 
 def menu():
     print("---MENÚ---")
+    print(f"1.Agregar empleados a un departamento.\n2.Mostrar información de un empleado.\n3.Lista de empleados por departamento")
+    print(f"4.Salir")
