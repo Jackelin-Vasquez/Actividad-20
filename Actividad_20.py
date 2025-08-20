@@ -12,6 +12,25 @@ class Empleado:
         #el salario y puesto pueden cambiar, ya que el empleado puede tener un aumento o un acenso,
         #por ello son datos protegidos, pueden modificarse dentro de la clase por medio de metodos.
 
+    def mostrar_información(self):
+        print("---DATOS DEL EMPLEADO---")
+        print(f"Nombre:{self.nombre}\nCodigo:{self.__codigo}\nPuesto:{self._puesto}\nSalario:{self._salario}")
+
+    def modificar_puesto(self,nuevo_puesto):
+        self._puesto == nuevo_puesto
+
+    def consultar_salario(self):
+        nombre = input("Ingrese nombre de empleado a consultar salario:")
+        if self.nombre == nombre:
+            print(f"Nombre:{self.nombre} tiene un salario de {self._salario} ")
+
+    def modificar_salario(self,nuevo_salario):
+        if nuevo_salario <= 0:
+            print("El salario debe ser mayor a 0...")
+        else:
+            self._salario = nuevo_salario
+
+
 class Departamento:
     def __init__(self,codigo_interno,nombre):
         self.__codigo_interno=codigo_interno
