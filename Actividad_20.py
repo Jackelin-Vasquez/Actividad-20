@@ -72,7 +72,11 @@ class Empresa:
         #La lista de departamentos es protegida, ya que no debe ser manipulable fuera de la clase o de
         #sus sub-clases, se puede manipular pero de una forma controlada.
 
-
+    def agregar_departamento(self):
+        nombre= input("Ingrese nombre de departamento:")
+        numero_registro= input("Ingrese numero de registro:")
+        depa= Empresa(nombre,numero_registro)
+        self._departamentos.append(depa)
 
 def menu():
     print("---MENÚ---")
