@@ -14,7 +14,7 @@ class Empleado:
 
     def mostrar_informacion(self):
         print("---DATOS DEL EMPLEADO---")
-        print(f"Nombre:{self.nombre}\nCodigo:{self.__codigo}\nPuesto:{self._puesto}\nSalario:{self._salario}")
+        return f"Nombre:{self.nombre}\nCodigo:{self.__codigo}\nPuesto:{self._puesto}\nSalario:{self._salario}"
 
     def modificar_puesto(self,nuevo_puesto):
         self._puesto = nuevo_puesto
@@ -43,12 +43,8 @@ class Departamento:
         #la lista de empleados debe ser protegida porque su manipulación debe ser controlada, y esto
         #se puede realizar por medio de metodos de la clase.
 
-    def ingresar_empleados(self):
+    def ingresar_empleados(self,codigo,nuevo_empleado,puesto,salario):
         print("---Ingreso de Empleados---")
-        codigo= input("Ingrese codigo de empleado:")
-        nuevo_empleado = input("Ingrese nombre de Empleado:")
-        puesto= input("Ingrese puesto de empleado:")
-        salario= input("Ingrese salario de empleado:")
         Empleados= Empleado(codigo,nuevo_empleado,puesto,salario)
         self._empleados.append(Empleados)
 
@@ -56,7 +52,7 @@ class Departamento:
         if not self._empleados:
             print("Lista vacia...")
         else:
-            for indice,i in enumerate(self._empleados):
+            for indice,i in enumerate(self._empleados,start=1):
                 print(f"{indice}. {i.mostrar_informacion()}")
 
 
@@ -106,3 +102,10 @@ empleado.mostrar_informacion()
 empleado.modificar_salario(5500)
 empleado.mostrar_informacion()
 empleado.consultar_salario("Pedro Pascal")
+
+#Prueba clase Departamento
+departamento= Departamento("001","Departamento de Derechos Humanos")
+departamento.ingresar_empleados("001","Juan Perez","Gerente","5500")
+departamento.ingresar_empleados("002","Sara Matinez","Secretaria","3000")
+departamento.ingresar_empleados("003","John Lennon","Director Creativo","6000")
+departamento.lista_empleados()
