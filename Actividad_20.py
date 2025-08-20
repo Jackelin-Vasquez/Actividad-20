@@ -48,13 +48,24 @@ class Departamento:
         empleados= Empleado(codigo,nuevo_empleado,puesto,salario)
         self._empleados.append(empleados)
 
+    def eliminar_empleado(self,nombre):
+        encontrado= False
+        for empleado in self._empleados:
+            if empleado.nombre.lower() == nombre.lower():
+                encontrado= True
+                self._empleados.remove(empleado)
+                break
+        if not encontrado:
+            print("Empleado no encontrado...")
+
     def lista_empleados(self):
         print("---Lista de Empleados---")
         if not self._empleados:
             print("Lista vacia...")
         else:
             for indice,i in enumerate(self._empleados,start=1):
-                print(f"{indice}. {i.mostrar_informacion()}")
+                print(f"{indice}")
+                i.mostrar_informacion()
 
 
 class Empresa:
@@ -118,6 +129,8 @@ departamento= Departamento("001","Departamento de Derechos Humanos")
 departamento.ingresar_empleados("001","Juan Perez","Gerente","5500")
 departamento.ingresar_empleados("002","Sara Matinez","Secretaria","3000")
 departamento.ingresar_empleados("003","John Lennon","Director Creativo","6000")
+departamento.lista_empleados()
+departamento.eliminar_empleado("sara matinez")
 departamento.lista_empleados()
 
 #prueba clase Empresa
