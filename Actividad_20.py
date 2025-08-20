@@ -14,14 +14,21 @@ class Empleado:
 
 class Departamento:
     def __init__(self,codigo_interno,nombre):
-        self.codigo_interno=codigo_interno
+        self.__codigo_interno=codigo_interno
+        #El codigo es privado, ya que es un dato que no debe ser modificado fuera de la clase al ser
+        #el identificador unico y su modificación puede causar problemas en toda la información que maneja.
         self.nombre= nombre
-        self.empleados = []
+        #El nombre es un dato publico porque su consulta en distintas partes del codigo no deberia afectar
+        #en su funcionamiento, e incluso puede llegar a cambiar el nombre del departamento por distintos motivos.
+        self._empleados = []
+        #la lista de empleados debe ser protegida porque su manipulación debe ser controlada, y esto
+        #se puede realizar por medio de metodos de la clase.
+
 class Empresa:
     def __init__(self,nombre,numero_registro):
-        self.nombre= nombre
-        self.numero_registro= numero_registro
-        self.departamentos= []
+        self.__nombre= nombre
+        self.__numero_registro= numero_registro
+        self._departamentos= []
 
 
 def menu():
