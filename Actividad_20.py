@@ -88,6 +88,16 @@ class Empresa:
             for indice,i in enumerate(self._departamentos):
                 print(f"{indice}.{i.mostrar_informacion()}")
 
+    def buscar(self):
+        buscar_departamento= input("Ingrese departamento a buscar:")
+        encontrado = False
+        for dep in self._departamentos:
+            if dep.nombre ==  buscar_departamento:
+                encontrado= True
+        if encontrado:
+            print(f"Nombre:{self.__nombre}\nNumero Registro:{self.__numero_registro}")
+
+
 def menu():
     print("---MENÚ---")
     print(f"1.Agregar empleados a un departamento.\n2.Mostrar información de un empleado.\n3.Lista de empleados por departamento")
